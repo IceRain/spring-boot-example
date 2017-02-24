@@ -1,5 +1,8 @@
 package com.zzb.controller;
 
+import com.zzb.model.User;
+import com.zzb.service.impl.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -8,5 +11,11 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
+    @Autowired
+    private IUserService userService;
+
+    public User getUser(){
+        return userService.getUserinfo();
+    }
 
 }

@@ -1,4 +1,11 @@
 spring:
+#bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+#     <property name="driverClassName" value="${jdbc.driverClassName}"/>
+#     <property name="url" value="${jdbc.url}"/>
+#     <property name="username" value="${jdbc.username}"/>
+#     <property name="password" value="${jdbc.password}"/>
+# </bean>
+#等同于再xml里面配置数据源的方式
     datasource:
         name: test
         url: jdbc:mysql://127.0.0.1:3306/test
@@ -21,6 +28,13 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
 
+
+#mybatis配置，相当于原来xml里面
+#        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+#                          <property name="dataSource" ref="dataSource" />
+#                          <property name="mapperLocations" value="classpath:com/liwei/ssm/mapper/*Mapper.xml" />
+#                          <!-- 还可以在这里配置 typeAliases  -->
+#                      </bean>
 mybatis:
   mapperLocations: classpath:mapping/*.xml
   typeAliasesPackage: com.zzb.model

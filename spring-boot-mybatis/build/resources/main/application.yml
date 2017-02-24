@@ -20,3 +20,7 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+
+mybatis:
+  mapperLocations: classpath:mapping/*.xml
+  typeAliasesPackage: com.zzb.model

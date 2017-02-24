@@ -2,19 +2,31 @@ buildscript {
     ext {
         springBootVersion = '1.5.1.RELEASE'
     }
+
     repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        //使用阿里的maven仓库
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        //使用本地的maven仓库
+        mavenLocal()
+        //maven默认的仓库
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.mybatis.generator:mybatis-generator-maven-plugin:1.3.2")
+        classpath("io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE")
     }
 }
 
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: "io.spring.dependency-management"
 apply plugin: 'org.springframework.boot'
 
+//生成的jar包包名和版本
 jar {
     baseName = 'spring-boot-mybatis'
     version = '0.1.0'
@@ -24,15 +36,17 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     mavenCentral()
 }
 
 
 dependencies {
-
+    //从maven仓库导入依赖
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.alibaba:druid:1.0.26')
     compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('mysql:mysql-connector-java')
     testCompile('org.springframework.boot:spring-boot-starter-test')
